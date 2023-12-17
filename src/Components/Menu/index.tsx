@@ -8,6 +8,7 @@ const Menu = () => {
   const [color, setColor] = useState<string>("menu-off");
 
   const rf1 = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLHeadingElement>(null);
 
   const handleMenu = (classN: string) => {
     setMenu((prevClass) => (prevClass === classN ? "" : classN));
@@ -22,20 +23,43 @@ const Menu = () => {
       scale: color === "change" ? 1.5 : 1,
       ease: "elastic.out(1,0.5)",
     });
+
+    gsap.to(rf1.current, {
+      opacity: color !== "change" ? 1 : 0,
+      scale: color !== "change" ? 1 : 0,
+      ease: "elastic.out(1,0.9)",
+    });
   };
+
+  const animationText = () =>{
+    gsap.fromTo(textRef.current, {
+      scale:  0.9,
+
+    },
+    {
+      scale:  1.1,
+      ease: "elastic.out(1,0.7)",
+      delay: 0.1
+    }
+    
+    );
+  }
 
   return (
     <div className="menu">
       <div className={`container-menu ${menu}`}>
         <div className="primary">
           <h1>Menu</h1>
-          <button onClick={() => handleMenu("menu-on")}>
+          <button onClick={() => {
+            handleMenu("menu-on");
+            animationText()
+          }}>
             <GiHamburgerMenu />
           </button>
         </div>
 
         <div className="nameUser">
-          <h1>Wellcome user</h1>
+          <h1 ref={textRef}>Welcome user</h1>
         </div>
 
         <div className="settings">

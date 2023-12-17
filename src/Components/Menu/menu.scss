@@ -94,6 +94,7 @@
         }
 
         .nameUser{
+            overflow: hidden;
             display: block;
             margin-top: 20%;
             width: 100%;
@@ -127,10 +128,9 @@
             }
 
         }
+
         .change-color{
-            display: none;
-        }
-        .change-color.change{
+            opacity: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
