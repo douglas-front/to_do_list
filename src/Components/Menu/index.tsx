@@ -1,11 +1,17 @@
 import { GiHamburgerMenu } from "react-icons/gi";
+import { PiSignOut } from "react-icons/pi";
 import "./menu.scss";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 
 const Menu = () => {
   const [menu, setMenu] = useState<string>("");
   const [color, setColor] = useState<string>("menu-off");
+
+ 
+  const name = localStorage.getItem("name")
+
+  
 
   const rf1 = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -45,6 +51,11 @@ const Menu = () => {
     );
   }
 
+  const signOut = () => {
+    localStorage.removeItem("name")
+    window.open("http://localhost:5173/login", "_self");
+  }
+
   return (
     <div className="menu">
       <div className={`container-menu ${menu}`}>
@@ -59,7 +70,7 @@ const Menu = () => {
         </div>
 
         <div className="nameUser">
-          <h1 ref={textRef}>Welcome user</h1>
+          <h1 ref={textRef}>Welcome <br/>{name}</h1>
         </div>
 
         <div className="settings">
@@ -77,6 +88,10 @@ const Menu = () => {
         <div className={`change-color ${color}`} ref={rf1}>
           <button>Black</button>
           <button>White</button>
+        </div>
+
+        <div className="sign-out">
+          <button onClick={signOut}><PiSignOut /></button>
         </div>
       </div>
     </div>
