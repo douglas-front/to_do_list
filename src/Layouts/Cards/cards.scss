@@ -1,16 +1,18 @@
-.container-cards {
-  overflow: hidden;
+.container-cards {  
+  overflow: initial;
   margin-top: 1%;
   width: 75%;
-  height: 100vh;
+  height: 100%;
   float: right;
   // background-color: red;
 
   .controler-cards {
+    overflow: hidden;
     width: 100%;
     height: 100%;
 
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
   }
 
@@ -54,14 +56,33 @@
     }
   }
 
-  .form-exercice {
-    position: absolute;
+  .form-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
     top: 0;
+    left: 0%;
+    z-index: -1;
+    
+    width: 100%;
+    height: 100%;
 
-    cursor: pointer;
+    // background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+  }
+  .form-exercice {
+    position: fixed; 
+    // top: 8%;
+ 
+   
+    transform: scale(0);
+    z-index: -1;
+    
+   
     margin-top: 1%;
-    width: 200px;
-    height: 250px;
+    width: 500px;
+    height: 350px;
     background-color: rgb(255, 220, 226);
 
     border-radius: 10px;
@@ -82,8 +103,6 @@
       flex-direction: column;
       align-items: center;
 
-     
-
       input {
         width: 90%;
         height: 30px;
@@ -95,14 +114,29 @@
 
         outline: 2px solid rgb(219, 68, 239);
       }
-      label{
+      label {
         margin-top: 2%;
       }
 
-      .area{
+      .area {
         height: 100px;
-        
       }
+
+    }
+
+    button{
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      padding: 10px 20px;
+      border-radius: 10px;
+
+      border: 2px solid #f9cdfb ;
+      background-color: transparent;
+
+      box-shadow: -4px 4px 5px rgb(0 0 0 / 0.2);
     }
   }
 }
