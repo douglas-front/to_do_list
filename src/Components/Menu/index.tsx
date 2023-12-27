@@ -7,14 +7,24 @@ import gsap from "gsap";
 const Menu = () => {
   const [menu, setMenu] = useState<string>("");
   const [color, setColor] = useState<string>("menu-off");
-
+  const rf1 = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLHeadingElement>(null);
  
-  const name = localStorage.getItem("name")
+  let name = localStorage.getItem("name")
+
+  if (name) {
+     const nameNotNumber = name.replace(/\d/g, '');
+     name = nameNotNumber
+  }
 
   
 
-  const rf1 = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLHeadingElement>(null);
+  const handleTheme = (theme: string)=>{
+    document.body.className = theme
+
+    localStorage.setItem('theme', `${theme}`)
+    
+  }
 
   const handleMenu = (classN: string) => {
     setMenu((prevClass) => (prevClass === classN ? "" : classN));
@@ -25,15 +35,13 @@ const Menu = () => {
   };
 
   const animationColor = () => {
-    gsap.to(rf1.current, {
-      scale: color === "change" ? 1.5 : 1,
-      ease: "elastic.out(1,0.5)",
-    });
+    
 
     gsap.to(rf1.current, {
       opacity: color !== "change" ? 1 : 0,
       scale: color !== "change" ? 1 : 0,
       ease: "elastic.out(1,0.9)",
+      zIndex: color !== "change" ? 10 : 0,
     });
   };
 
@@ -86,8 +94,8 @@ const Menu = () => {
         </div>
 
         <div className={`change-color ${color}`} ref={rf1}>
-          <button>Black</button>
-          <button>White</button>
+          <button onClick={()=> handleTheme('black')}>Black</button>
+          <button onClick={()=> handleTheme('white')}>White</button>
         </div>
 
         <div className="sign-out">

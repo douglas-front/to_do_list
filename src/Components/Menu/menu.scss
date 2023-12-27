@@ -11,6 +11,8 @@
     position: fixed;
     top: 0;
 
+    z-index: 10000000;
+
     .container-menu{
         overflow: hidden;
         width: 93%;
@@ -61,6 +63,20 @@
         }
         .change-color{
             display: none;
+
+        }
+        .sign-out{
+            position: absolute;
+            right: 5%;
+            bottom: 30%;
+            
+            button{
+                cursor: pointer;
+                background-color: transparent;
+                border: none;
+    
+                font-size: 30px;
+            }
         }
         
     }
@@ -140,6 +156,9 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            transform: scale(0);
+
+            z-index: 10;
 
             position: absolute;
             bottom: 2%;
@@ -188,19 +207,20 @@
                 }
             }
         }
-    }
+        .sign-out{
+            position: absolute;
+            bottom: 1%;
+            right: 5%;
     
-    .sign-out{
-        position: absolute;
-        bottom: 2%;
-        right: 5%;
-
-        button{
-            cursor: pointer;
-            background-color: transparent;
-            border: none;
-
-            font-size: 30px;
+            button{
+                cursor: pointer;
+                background-color: transparent;
+                border: none;
+    
+                font-size: 30px;
+            }
         }
     }
+    
+    
 }

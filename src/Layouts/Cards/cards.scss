@@ -17,6 +17,9 @@
   }
 
   .card {
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
     margin-top: 1%;
     width: 200px;
     height: 250px;
@@ -26,15 +29,41 @@
 
     box-shadow: 5px 5px 10px rgb(0 0 0 / 0.2);
 
+    transition: all .3s;
+    &:hover{
+      transform: scale(0.9);
+      border: 1px solid #000;
+    }
+
     h1 {
       margin-left: 3%;
       margin-top: 3%;
+      text-align: center;
     }
     p {
-      margin-top: 2%;
+      overflow: hidden;
+      margin-top: 10%;
       width: 90%;
       margin-left: 3%;
+      text-align: center;
+      height: 100px;
     }
+    .delete{
+      cursor: pointer;
+      position: absolute;
+      bottom: 2%;
+      right: 2%;
+
+      background-color: transparent;
+      border: none;
+
+      :first-child{
+        color: red;
+        font-size: 25px;
+      }
+    }
+
+    
   }
   .card__add {
     cursor: pointer;
@@ -50,6 +79,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    transition: all .3s;
+
+    &:hover{
+      border: 1px solid #000;
+    }
 
     h1 {
       font-size: 60px;
@@ -72,6 +107,7 @@
     backdrop-filter: blur(2px);
   }
   .form-exercice {
+    overflow: hidden;
     position: fixed; 
     // top: 8%;
  
@@ -138,5 +174,64 @@
 
       box-shadow: -4px 4px 5px rgb(0 0 0 / 0.2);
     }
+    .submit-div{
+      position: absolute;
+      width: 100px;
+      height: 100px;
+
+      bottom: -12%;
+    
+    }
   }
 }
+
+.alert{
+  position: fixed;
+  left: 60%;
+  top: 10%;
+
+  transform: translate(-40%, -50%);
+}
+
+.card__add.regular{
+  display: none;
+}
+
+.modal {
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: -1;
+
+  width: 400px;
+  height: 350px;
+  background-color: rgb(255, 220, 226);
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgb(0 0 0 / 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    margin-top: 5%;
+    width: 80%;
+  }
+
+  button{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    padding: 10px 20px;
+    border-radius: 10px;
+
+    border: 2px solid #f9cdfb ;
+    background-color: transparent;
+
+    box-shadow: -4px 4px 5px rgb(0 0 0 / 0.2);
+  }
+}
+

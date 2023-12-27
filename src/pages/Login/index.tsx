@@ -1,11 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './login.scss';
 
 const Login = () => {
   const [name, setName] = useState<string>('');
   const [exist, setExist] = useState<string>('');
+  const [themClass, setThemeClass] = useState<string>()
+
+  useEffect(()=>{
+    const theme = localStorage.getItem('theme')
+  
+    if(theme){
+      setThemeClass(theme)
+    }
+  },[])
+
 
   const setNameOnStorage = () => {
+
+    
+
     const storedName = localStorage.getItem('name');
 
     if (storedName) {
@@ -16,10 +29,11 @@ const Login = () => {
       setExist('');
       window.open("http://localhost:5173/", "_self");
     }
+
   };
 
   return (
-    <section className='login'>
+    <section className={`login ${themClass}`}>
       <h1>Login</h1>
       <div className="login-div">
         <form>
@@ -30,6 +44,7 @@ const Login = () => {
             type="text"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setName(e.target.value);
+
             }}
           />
         </form>

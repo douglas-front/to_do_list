@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  font-family: "Roboto", sans-serif;
+}
+body.black {
+  background-color: #1a1317;
+  color: #fff;
+  transition: all .5s;
+  .menu {
+    .container-menu {
+      background-color: #000;
+
+      .primary,
+      .sign-out,
+      .settings {
+        button {
+          :first-child {
+            font-size: 30px;
+            color: #fff;
+          }
+        }
+      }
+     
+    
+    }
+    .container-menu.menu-on {
+      background-color: #000;
+
+      color: #fff;
+
+      .change-color{
+        background-color: #000;
+        border: 1px solid #fff;
+
+
+      }
+    }
+  }
+
+  .container-cards{
+
+    .card,
+    .card__add,
+    .form-exercice{
+      background-color: #000;
+    }
+    .card__add{
+     
+      &:hover{
+        border: 1px solid #fff;
+      }
+    }
+    .form-exercice {
+    
+
+      form{
+
+        input{
+          outline: none;
+        }
+      }
+
+      button{
+
+        color: #fff;
+      }
+    }
+
+    .card{
+
+      &:hover{
+        border: 1px solid #fff;
+      }
+    }
+  }
+
+  .modal{
+    background-color: #000;
+
+    button{
+      color: #fff;
+    }
+  }
+
+}

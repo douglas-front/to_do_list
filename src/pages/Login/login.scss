@@ -91,3 +91,22 @@
   }
 
 }
+
+.login.black{
+  background-color: #1a1317;
+  color: #fff;
+  .login-div{
+    background-color: #000;
+
+    form{
+      input{
+        outline: none;
+      }
+    }
+
+    button{
+      color: #fff;
+    }
+  }
+
+}
