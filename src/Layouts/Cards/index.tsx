@@ -8,7 +8,8 @@ const Cards = () => {
   const [asAdm, setAsAdm] = useState<string>();
   const [updateFlag, setUpdateFlag] = useState<boolean>(false);
   const [request, setRequest] = useState<boolean>(false)
-  const [arrayCard, setArrayCard] = useState([]);
+  const [arrayCard, setArrayCard] = useState<Array<{ title: string; description: string; _id: number }>>([]);
+
   const [form, setForm] = useState<string>("fill");
   const [data, setData] = useState({
     title: "",
@@ -93,7 +94,8 @@ const Cards = () => {
 
       handleFill();
       setUpdateFlag((prevFlag) => !prevFlag);
-      window.alert("saved");
+      window.alert(`saved`);
+      console.log(apiPost)
     } catch (error) {
       console.log(error);
     }
@@ -114,6 +116,7 @@ const Cards = () => {
 
       setUpdateFlag((prevFlag) => !prevFlag);
       window.alert("deleted");
+      console.log(apiDelete)
     } catch (error) {
       console.log(error);
     }
@@ -192,6 +195,7 @@ const Cards = () => {
             <input
               type="text"
               placeholder="write a description"
+              required
               onChange={(e) => {
                 setData({ ...data, title: e.target.value });
               }}
@@ -202,6 +206,7 @@ const Cards = () => {
               type="text"
               className="area"
               placeholder="write a title"
+              required
               onChange={(e) => {
                 setData({ ...data, description: e.target.value });
               }}

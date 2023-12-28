@@ -1,11 +1,17 @@
 .login {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
+
+  // background-color: red;
+  background-color: rgb(0 0 0 / 0.4);
+  backdrop-filter: blur(10px);
+  z-index: 10011100;
 
   .login-div {
     display: flex;
