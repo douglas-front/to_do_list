@@ -11,6 +11,10 @@ function Home() {
     if (theme) {
       document.body.className = theme;
     }
+
+    if(!theme){
+      localStorage.setItem("theme", "white")
+    }
   }, []);
   
   

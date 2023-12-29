@@ -2,17 +2,21 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
-
+  // overflow-x: hidden;
+  overflow: initial;
   font-family: "Roboto", sans-serif;
 }
+body.white{
+  background-color: #fff;
+}
 body.black {
-  background-color: #1a1317;
+  background-color: #bb93aa;
   color: #fff;
   transition: all .5s;
   .menu {
     .container-menu {
       background-color: #000;
+      border: 2px solid #fff;
 
       .primary,
       .sign-out,
@@ -47,6 +51,7 @@ body.black {
     .card__add,
     .form-exercice{
       background-color: #000;
+      border: 1px solid #fff;
     }
     .card__add{
      
@@ -80,6 +85,7 @@ body.black {
 
   .modal{
     background-color: #000;
+    border: 1px solid #fff;
 
     button{
       color: #fff;

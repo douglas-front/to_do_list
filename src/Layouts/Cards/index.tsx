@@ -1,33 +1,37 @@
-import "./cards.scss";
-import { IoAdd, IoCloseSharp } from "react-icons/io5";
-import { MdDeleteForever } from "react-icons/md";
-import gsap from "gsap";
-import { useState, useRef, useEffect } from "react";
+import "./cards.scss"
+import { IoAdd, IoCloseSharp } from "react-icons/io5"
+import { MdDeleteForever } from "react-icons/md"
+import gsap from "gsap"
+import { useState, useRef, useEffect } from "react"
 
 const Cards = () => {
   const [asAdm, setAsAdm] = useState<string>();
   const [updateFlag, setUpdateFlag] = useState<boolean>(false);
   const [request, setRequest] = useState<boolean>(false)
-  const [arrayCard, setArrayCard] = useState<Array<{ title: string; description: string; _id: number }>>([]);
+  const [arrayCard, setArrayCard] = useState<Array<{ title: string; description: string; _id: number }>>([])
 
   const [form, setForm] = useState<string>("fill");
   const [data, setData] = useState({
     title: "",
     description: "",
-  });
+  })
   const [modalData , setModalData] = useState({
-    title: "teste",
-    description: "teste"
+    title: "",
+    description: "",
+    _id: 1
   })
 
-  const nameAdm = ["douglas8467", "higor3301", "felipe4590","professor3990"];
+  
 
-  const name = localStorage.getItem("name");
+  const nameAdm = ["douglas8467", "higor3301", "felipe4590","professor3990"]
+
+  const name = localStorage.getItem("name")
 
 
-  const rf1 = useRef<HTMLDivElement>(null);
-  const rf2 = useRef<HTMLDivElement>(null);
-  const rf3 = useRef<HTMLDivElement>(null);
+  const rf1 = useRef<HTMLDivElement>(null)
+  const rf2 = useRef<HTMLDivElement>(null)
+  const rf3 = useRef<HTMLDivElement>(null)
+  const rf4 = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (name && nameAdm.includes(name)) {
@@ -36,11 +40,8 @@ const Cards = () => {
       setAsAdm("regular");
     }
     // window.alert('clique nos cards para ver melhor')
-  }, []);
+  }, [])
 
- 
-
- 
 
   useEffect(() => {
     async function apiRequest() {
@@ -55,10 +56,27 @@ const Cards = () => {
     }
     apiRequest();
     setRequest(true)
-  }, [updateFlag]);
+  }, [updateFlag])
 
+  useEffect(() => {
+    const tl = gsap.timeline({ defaults: { duration: 1.2, ease: "elastic.out(1,0.8)" , delay: 1} });
   
-
+    tl.fromTo(
+      rf4.current,
+      {
+        y: 50,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+      }
+    );
+  
+  }, []);
+  
+  
+  
   const handleFill = () => {
     if (form === "fill") {
       setForm("");
@@ -77,7 +95,7 @@ const Cards = () => {
       zIndex: form === "fill" ? 1 : -1,
       ease: "elastic.out(1,0.8)",
     });
-  };
+  }
 
   const handleSubmit = async () => {
     try {
@@ -94,12 +112,12 @@ const Cards = () => {
 
       handleFill();
       setUpdateFlag((prevFlag) => !prevFlag);
-      window.alert(`saved`);
+      window.alert('saved');
       console.log(apiPost)
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 
   const handleDelete = async (id: number) => {
     try {
@@ -120,16 +138,16 @@ const Cards = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 
   if (!request && asAdm === "regular") {
     return <h1 className="alert">sem exercicios no momento</h1>;
   }
-  if(arrayCard.length === 0){
-    return <h1 className="alert">loading</h1>
-  }
+  // if(arrayCard.length === 0){
+  //   return <h1 className="alert">loading</h1>
+  // }
 
-  const modal = (title: string, description: string)=>{
+  const modal = (title: string, description: string, _id: any)=>{
 
     if (form === "fill") {
       setForm("");
@@ -139,7 +157,8 @@ const Cards = () => {
 
     setModalData({
       title: title,
-      description: description
+      description: description,
+      _id: _id
     })
 
     gsap.to(rf3.current, {
@@ -150,30 +169,34 @@ const Cards = () => {
     });
   }
 
+
+
   return (
     <div className="container-cards">
       <h1>exercises</h1>
 
-      <div className="controler-cards">
-        {arrayCard.map((card, key) => (
-          <div
-            key={key}
-            className="card"
-            
-            onClick={()=> modal(`${card.title}`,`${card.description}`)}
-          >
-            <h1>{card.title}</h1>
-            <p>{card.description}</p>
+      <div className="controler-cards" >
+        <div className="cards" ref={rf4}>
+          {arrayCard.map((card, key) => (
+            <div
+              key={key}
+              className="card"
+              
+              onClick={()=> modal(`${card.title}`, `${card.description}`, `${card._id}`)}
+            >
+              <h1>{card.title}</h1>
+              <p>{card.description}</p>
 
-            {asAdm === "admin" ? (
-              <button className="delete" onClick={() => handleDelete(card._id)}>
-                <MdDeleteForever />
-              </button>
-            ) : (
-              ""
-            )}
-          </div>
-        ))}
+              {asAdm === "admin" ? (
+                <button className="delete" onClick={() => handleDelete(card._id)}>
+                  <MdDeleteForever />
+                </button>
+              ) : (
+                ""
+              )}
+            </div>
+          ))}
+        </div>
 
         <div className={`card__add ${asAdm}`} onClick={handleFill}>
           <h1>
@@ -223,7 +246,16 @@ const Cards = () => {
       <div className="modal" ref={rf3}>
           <h1>{modalData.title}</h1>
           <p>{modalData.description}</p>
-          <button onClick={()=> modal('', '')}><IoCloseSharp/></button>
+          <button onClick={()=> modal('', '', '')}><IoCloseSharp/></button>
+          {asAdm === "admin" ? (
+            <div  className="delete">
+                <button onClick={() => handleDelete(modalData._id)}>
+                  <MdDeleteForever />
+                </button>
+            </div>
+              ) : (
+                ""
+              )}
       </div>
     </div>
   );

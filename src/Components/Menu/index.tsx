@@ -1,14 +1,15 @@
-import { GiHamburgerMenu } from "react-icons/gi";
-import { PiSignOut } from "react-icons/pi";
-import "./menu.scss";
-import { useState, useRef } from "react";
-import gsap from "gsap";
+import { GiHamburgerMenu } from "react-icons/gi"
+import { PiSignOut } from "react-icons/pi"
+import "./menu.scss"
+import { useState, useRef , useEffect} from "react"
+import gsap from "gsap"
 
 const Menu = () => {
-  const [menu, setMenu] = useState<string>("");
-  const [color, setColor] = useState<string>("menu-off");
-  const rf1 = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLHeadingElement>(null);
+  const [menu, setMenu] = useState<string>("")
+  const [color, setColor] = useState<string>("menu-off")
+  const rf1 = useRef<HTMLDivElement>(null)
+  const rf2 = useRef<HTMLDivElement>(null)
+  const textRef = useRef<HTMLHeadingElement>(null)
   
  
   let name = localStorage.getItem("name")
@@ -18,6 +19,18 @@ const Menu = () => {
      name = nameNotNumber
   }
 
+
+  useEffect(()=>{
+    gsap.fromTo(rf2.current,{
+      x: -500,
+      opacity: 0
+    },{
+      x: 0,
+      opacity: 1,
+      ease: "elastic.out(1,0.9)",
+      delay: .7
+    })
+  },[])
   
 
   const handleTheme = (theme: string)=>{
@@ -29,11 +42,12 @@ const Menu = () => {
 
   const handleMenu = (classN: string) => {
     setMenu((prevClass) => (prevClass === classN ? "" : classN));
-  };
+    
+  }
 
   const handleColor = (classN: string) => {
     setColor((prevClass) => (prevClass === classN ? "" : classN));
-  };
+  }
 
   const animationColor = () => {
     
@@ -43,8 +57,8 @@ const Menu = () => {
       scale: color !== "change" ? 1 : 0,
       ease: "elastic.out(1,0.9)",
       zIndex: color !== "change" ? 10 : 0,
-    });
-  };
+    })
+  }
 
   const animationText = () =>{
     gsap.fromTo(textRef.current, {
@@ -66,12 +80,12 @@ const Menu = () => {
   }
 
   return (
-    <div className="menu">
+    <div className={`menu ${menu}`} ref={rf2}>
       <div className={`container-menu ${menu}`}>
         <div className="primary">
           <h1>Menu</h1>
           <button onClick={() => {
-            handleMenu("menu-on");
+            handleMenu("menu-on")
             animationText()
           }}>
             <GiHamburgerMenu />
@@ -86,8 +100,8 @@ const Menu = () => {
           <h1>Settings</h1>
           <button
             onClick={() => {
-              handleColor("change");
-              animationColor();
+              handleColor("change")
+              animationColor()
             }}
           >
             <GiHamburgerMenu />

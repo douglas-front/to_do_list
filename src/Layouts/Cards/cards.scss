@@ -5,9 +5,10 @@
   height: 100%;
   float: right;
   // background-color: red;
+  background-color: transparent;
 
   .controler-cards {
-    overflow: hidden;
+    overflow: initial;
     width: 100%;
     height: 100%;
 
@@ -233,5 +234,100 @@
 
     box-shadow: -4px 4px 5px rgb(0 0 0 / 0.2);
   }
+  .delete{
+    position: absolute;
+    bottom: 15%;
+    right: 1%;  
+
+    button{
+
+      :first-child{
+        color: #ff0000;
+        // font-size: 20px;
+      }
+    }
+   
+  }
+}
+.cards{
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
+@media screen and (min-width: 200px) and (max-width: 500px) {
+  .container-cards {  
+    margin-top: 30%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+  
+    .controler-cards {
+   
+      justify-content: center;
+      gap: 0px;
+     
+    }
+  
+    .card {
+      transform: scale(0.9);
+      border: 1px solid #000;
+    
+      .delete{
+  
+        :first-child{
+          font-size: 30px;
+        }
+      }
+  
+      
+    }
+    .card__add {
+      overflow: initial;
+      position: fixed;
+      bottom: 3%;
+      right: 7%;
+      border-radius: 50%;
+      // transform: scale(0.9);
+      width: 60px;
+      height: 60px;
+
+      border: 1px solid #000;
+
+      h1{
+        font-size: 30px;
+      }
+    }
+  
+   
+    .form-exercice {
+  
+      width: 90%;
+ 
+  
+      h1 {
+        margin-top: 15%;
+      }
+  
+      
+    }
+  }
+  .modal {
+    
+  
+    width: 90%;
+    height: 350px;
+    h1{
+      font-size: 40px;
+      text-align: center;
+    }
+
+  }
+  .cards{
+    justify-content: center;
+  }
+}
