@@ -76,6 +76,7 @@ const Menu = () => {
 
   const signOut = () => {
     localStorage.removeItem("name")
+    localStorage.removeItem("theme")
     window.open("/to_do_list", "_self")
   }
 

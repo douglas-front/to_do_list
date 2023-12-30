@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './login.scss';
 
 const LoginForm = () => {
@@ -7,10 +7,8 @@ const LoginForm = () => {
   const [themeClass, setThemeClass] = useState<string>();
   const [login, setLogin] = useState<string>();
 
-
   useEffect(() => {
     const theme = localStorage.getItem('theme');
-
     if (theme) {
       setThemeClass(theme);
     }
@@ -18,7 +16,6 @@ const LoginForm = () => {
 
   useEffect(() => {
     const loginOn = localStorage.getItem('name');
-
     if (loginOn) {
       setLogin('on');
     }
@@ -29,12 +26,17 @@ const LoginForm = () => {
 
     if (storedName) {
       setExist('Você já fez login');
-      window.open('/to_do_list', "_self")
-      
+      window.open('/to_do_list', '_self');
     } else {
       localStorage.setItem('name', `${name}`);
       setExist('');
-      window.open('/to_do_list', "_self")
+      window.open('/to_do_list', '_self');
+    }
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      setNameOnStorage();
     }
   };
 
@@ -52,6 +54,7 @@ const LoginForm = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setName(e.target.value);
               }}
+              onKeyPress={handleKeyPress}
             />
           </form>
           <button onClick={setNameOnStorage}>Submit</button>
