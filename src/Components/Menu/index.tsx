@@ -6,7 +6,7 @@ import gsap from "gsap"
 
 const Menu = () => {
   const [menu, setMenu] = useState<string>("")
-  const [color, setColor] = useState<string>("menu-off")
+  const [Menucolor, setMenuColor] = useState<string>("menu-off")
   const rf1 = useRef<HTMLDivElement>(null)
   const rf2 = useRef<HTMLDivElement>(null)
   const textRef = useRef<HTMLHeadingElement>(null)
@@ -46,7 +46,7 @@ const Menu = () => {
   }
 
   const handleColor = (classN: string) => {
-    setColor((prevClass) => (prevClass === classN ? "" : classN));
+    setMenuColor((prevClass) => (prevClass === classN ? "" : classN));
   }
 
   const animationColor = () => {
