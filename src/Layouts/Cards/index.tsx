@@ -21,9 +21,14 @@ const Cards = () => {
     _id: 1
   })
 
-  
+  const ADM1 = import.meta.env.VITE_ADMONE
+  const ADM2 = import.meta.env.VITE_ADMTWO
+  const ADM3 = import.meta.env.VITE_ADMTHREE
+  const ADMPRO = import.meta.env.VITE_ADMPRO
 
-  const nameAdm = ["douglas8467", "higor3301", "felipe4590","professor3990"]
+  console.log(ADM1)
+
+  const nameAdm = [ADM1, ADM2, ADM3, ADMPRO]
 
   const name = localStorage.getItem("name")
 
