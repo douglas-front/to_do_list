@@ -192,13 +192,6 @@ const Cards = () => {
               <h1>{card.title}</h1>
               <p>{card.description}</p>
 
-              {asAdm === "admin" ? (
-                <button className="delete" onClick={() => handleDelete(card._id)}>
-                  <MdDeleteForever />
-                </button>
-              ) : (
-                ""
-              )}
             </div>
           ))}
         </div>
@@ -254,7 +247,10 @@ const Cards = () => {
           <button onClick={()=> modal('', '', '')}><IoCloseSharp/></button>
           {asAdm === "admin" ? (
             <div  className="delete">
-                <button onClick={() => handleDelete(modalData._id)}>
+                <button onClick={() =>{
+                   handleDelete(modalData._id)
+                    modal("", "", "")
+                   }}>
                   <MdDeleteForever />
                 </button>
             </div>

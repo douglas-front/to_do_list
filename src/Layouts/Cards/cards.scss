@@ -45,25 +45,11 @@
       overflow: hidden;
       margin-top: 10%;
       width: 90%;
+     
       margin-left: 3%;
       text-align: center;
-      height: 100px;
+      height: 60px;
     }
-    .delete{
-      cursor: pointer;
-      position: absolute;
-      bottom: 2%;
-      right: 2%;
-
-      background-color: transparent;
-      border: none;
-
-      :first-child{
-        color: red;
-        font-size: 25px;
-      }
-    }
-
     
   }
   .card__add {
@@ -215,9 +201,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  h1{
+    text-align: center;
+  }
   p {
     margin-top: 5%;
     width: 80%;
+    text-wrap: wrap;
   }
 
   button{
