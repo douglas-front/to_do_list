@@ -53,10 +53,10 @@ const Menu = () => {
     
 
     gsap.to(rf1.current, {
-      opacity: color !== "change" ? 1 : 0,
-      scale: color !== "change" ? 1 : 0,
+      opacity: Menucolor !== "change" ? 1 : 0,
+      scale: Menucolor !== "change" ? 1 : 0,
       ease: "elastic.out(1,0.9)",
-      zIndex: color !== "change" ? 10 : 0,
+      zIndex: Menucolor !== "change" ? 10 : 0,
     })
   }
 
@@ -109,7 +109,7 @@ const Menu = () => {
           </button>
         </div>
 
-        <div className={`change-color ${color}`} ref={rf1}>
+        <div className={`change-color ${Menucolor}`} ref={rf1}>
           <button onClick={()=> handleTheme('black')}>Black</button>
           <button onClick={()=> handleTheme('white')}>White</button>
         </div>
